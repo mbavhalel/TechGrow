@@ -1,25 +1,23 @@
-package techgrow.plants;
+package techgrow.wateringNeeds;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="PLANT")
-public class Plant {
+@Table(name="WETERING_NEEDS")
+    public class WateringNeeds {
     @Id
-    @GeneratedValue
-    private int plantId;
-    private String species;
-    private String location;
-    private int wateringNeedsId;
-    private int wateringScheduleId;
+    public int weteringId;
+    private String plantType;
+    private int howOften;
+    private int howDeep;
 }
