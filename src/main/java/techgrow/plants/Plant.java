@@ -27,9 +27,6 @@ public class Plant {
     @JsonIgnore
     @OneToMany(mappedBy = "plant")
     private List<WateringSchedule> wateringSchedule;
-    public List<WateringSchedule> getWateringSchedule() {
-        return wateringSchedule;
-    }
 
     @JsonIgnore
     @OneToOne(mappedBy = "plant")
