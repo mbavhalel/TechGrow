@@ -10,28 +10,36 @@ public class WateringScheduleController {
 
     @Autowired
     WateringScheduleSevice wateringScheduleSevice;
-    @PostMapping("/addPlantWateringNeed")
+    @PostMapping("/addPlantWateringSchedule")
     public WateringSchedule postPlantWateringNeed(@RequestBody WateringSchedule wateringSchedule){
         return wateringScheduleSevice.addPlantWateringSchedule(wateringSchedule);
     }
-    @PostMapping("/addListOfPlantsWateringNeed")
+    @PostMapping("/addListOfPlantsWateringSchedule")
     public List<WateringSchedule> postListOfPlants(@RequestBody List<WateringSchedule> wateringSchedule){
         return wateringScheduleSevice.addListOfPlantsWateringSchedule(wateringSchedule);
     }
-    @GetMapping("/viewPlantWateringNeed/{id}")
+    @GetMapping("/viewPlantWateringSchedule/{id}")
     public WateringSchedule getPlantWateringNeed(@PathVariable int id){
         return wateringScheduleSevice.getPlantWateringSchedule(id);
     }
-    @GetMapping("/viewListOfPlantsWateringNeed")
+    @GetMapping("/viewListOfPlantsWateringSchedule")
     public List<WateringSchedule> getPlantWateringNeed(){
         return wateringScheduleSevice.getListOfPlantsWateringSchedule();
     }
-    @PutMapping("/updatePlantWateringNeed")
+    @PutMapping("/updatePlantWateringSchedule")
     public WateringSchedule putPlant(@RequestBody WateringSchedule wateringSchedule){
         return wateringScheduleSevice.updatePlantWateringSchedule(wateringSchedule);
     }
-    @DeleteMapping("/deletePlant/{id}")
+    @DeleteMapping("/deletePlantWateringSchedule/{id}")
     public String deletePlantWateringNeed(@PathVariable int id){
         return wateringScheduleSevice.deletedPlantWateringSchedule(id);
+    }
+
+    @PutMapping("/{scheduleId}/Plant/{plantId}")
+    WateringSchedule plantSchedule(
+        @PathVariable int scheduleId,
+        @PathVariable int plantId
+    ){
+        return wateringScheduleSevice.linkPlantSchedule(scheduleId, plantId);
     }
 }

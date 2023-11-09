@@ -2,11 +2,17 @@ package techgrow.wateringSchedule;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import techgrow.plants.Plant;
+import techgrow.plants.PlantRepository;
+
 import java.util.List;
 @Service
 public class WateringScheduleSevice {
     @Autowired
     WateringScheduleRepository wateringScheduleRepository;
+
+    @Autowired
+    PlantRepository plantRepository;
     public WateringSchedule addPlantWateringSchedule(WateringSchedule wateringSchedule) {
         return wateringScheduleRepository.save(wateringSchedule);
     }
@@ -34,5 +40,15 @@ public class WateringScheduleSevice {
             return "Schedule deleted";
         }
         else return "not found";
+    }
+
+    public WateringSchedule linkPlantSchedule(int scheduleId, int plantId) {
+        WateringSchedule wateringScheduleEdit = wateringScheduleRepository.findById(scheduleId).orElse(null);
+        Plant plantEdit = plantRepository.findById(plantId).orElse(null);
+        if(wateringScheduleEdit != null && plantEdit != null){
+            wateringScheduleEdit.addPlant(plantEdit);
+            return wateringScheduleRepository.save(wateringScheduleEdit);
+        }
+        else return null;
     }
 }

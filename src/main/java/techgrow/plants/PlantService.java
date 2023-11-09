@@ -2,11 +2,19 @@ package techgrow.plants;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import techgrow.wateringSchedule.WateringSchedule;
+import techgrow.wateringSchedule.WateringScheduleRepository;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Service
 public class PlantService {
     @Autowired
     PlantRepository plantRepository;
+    WateringScheduleRepository wateringScheduleRepository;
+    private Set<WateringSchedule> wateringScheduleList = new HashSet<>();
     public Plant addPlant(Plant plant) {
         return plantRepository.save(plant);
     }
@@ -23,8 +31,6 @@ public class PlantService {
         Plant updatedPlant = plantRepository.findById(plant.getPlantId()).orElse(null);
             if(updatedPlant != null){
                 updatedPlant.setSpecies(plant.getSpecies());
-                updatedPlant.setLocation(plant.getLocation());
-                updatedPlant.setWateringNeedsId(plant.getWateringNeedsId());
                 plantRepository.save(updatedPlant);
                 return updatedPlant;
             }
@@ -36,6 +42,12 @@ public class PlantService {
             return "Plant deleted";
         }
         else return "Plant not available";
+    }
+    public Plant mapPlantSchedule(int plantId, int scheduleId) {
+        Plant plant = plantRepository.findById(plantId).get();
+        WateringSchedule wateringSchedule = wateringScheduleRepository.findById(scheduleId).get();
+        wateringScheduleList.add(wateringSchedule);
+        return plantRepository.save(plant);
     }
 }
 

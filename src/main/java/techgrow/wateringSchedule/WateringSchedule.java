@@ -1,24 +1,32 @@
 package techgrow.wateringSchedule;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.time.LocalDateTime;
-import java.time.Period;
+import techgrow.plants.Plant;
+
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="WETERING_SCHEDULE")
 public class WateringSchedule {
     @Id
+    @GeneratedValue
     private int scheduleId;
-    private LocalDateTime nextSchedule;
-    private Period period;
+    private String nextSchedule; //localDate
+    private String period; //Period
 
+    @ManyToOne
+    @JoinColumn(name = "fk_plant_id", referencedColumnName = "plantId")
+    private Plant plant;
+    public Plant getPlant() {
+        return plant;
+    }
+
+    public void addPlant(Plant plantEdit) {
+        this.plant = plantEdit;
+    }
 }

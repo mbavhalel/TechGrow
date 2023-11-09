@@ -8,16 +8,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "USER_INFO")
 public class User {
     @Id
     @GeneratedValue
-    @Column(name = "USER_ID")
     private int userId;
-    @Column(name = "USER_NAME")
     private String username;
-    @Column(name = "PASSWORD")
     private String password;
-    @Column(name = "EMAIL")
     private String email;
+
 }
