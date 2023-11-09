@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import techgrow.plants.Plant;
 import techgrow.plants.PlantRepository;
+import techgrow.user.User;
+import techgrow.user.UserRepository;
 
 import java.util.List;
 @Service
@@ -13,6 +15,10 @@ public class WateringScheduleSevice {
 
     @Autowired
     PlantRepository plantRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
     public WateringSchedule addPlantWateringSchedule(WateringSchedule wateringSchedule) {
         return wateringScheduleRepository.save(wateringSchedule);
     }
@@ -47,6 +53,15 @@ public class WateringScheduleSevice {
         Plant plantEdit = plantRepository.findById(plantId).orElse(null);
         if(wateringScheduleEdit != null && plantEdit != null){
             wateringScheduleEdit.addPlant(plantEdit);
+            return wateringScheduleRepository.save(wateringScheduleEdit);
+        }
+        else return null;
+    }
+    public WateringSchedule linkUserSchedule(int scheduleId, int userId) {
+        WateringSchedule wateringScheduleEdit = wateringScheduleRepository.findById(scheduleId).orElse(null);
+        User userLink = userRepository.findById(userId).orElse(null);
+        if(wateringScheduleEdit != null && userLink != null){
+            wateringScheduleEdit.addUser(userLink);
             return wateringScheduleRepository.save(wateringScheduleEdit);
         }
         else return null;

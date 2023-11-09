@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import techgrow.plants.Plant;
+import techgrow.user.User;
 
 @Entity
 @Setter
@@ -22,11 +23,16 @@ public class WateringSchedule {
     @ManyToOne
     @JoinColumn(name = "fk_plant_id", referencedColumnName = "plantId")
     private Plant plant;
-    public Plant getPlant() {
-        return plant;
-    }
+
+    @ManyToOne
+    @JoinColumn(name = "fk_user_id", referencedColumnName = "userId")
+    private User user;
 
     public void addPlant(Plant plantEdit) {
         this.plant = plantEdit;
+    }
+
+    public void addUser(User userLink) {
+        this.user = userLink;
     }
 }
