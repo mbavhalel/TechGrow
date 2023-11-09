@@ -6,8 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import techgrow.autumnWateringNeeds.AutumnWateringNeeds;
+import techgrow.springWateringNeeds.SpringWateringNeeds;
 import techgrow.summerWateringNeeds.SummerWateringNeeds;
 import techgrow.wateringSchedule.WateringSchedule;
+import techgrow.winterWateringNeeds.WinterWateringNeeds;
+
 import java.util.List;
 @Entity
 @Setter
@@ -28,6 +32,18 @@ public class Plant {
     }
 
     @JsonIgnore
-    @OneToOne(mappedBy = "plant1")
+    @OneToOne(mappedBy = "plant")
     private SummerWateringNeeds summerWateringNeeds;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "plant")
+    private AutumnWateringNeeds autumnWateringNeeds;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "plant")
+    private SpringWateringNeeds springWateringNeeds;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "plant")
+    private WinterWateringNeeds winterWateringNeeds;
 }
