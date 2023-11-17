@@ -18,7 +18,6 @@ public class User {
     @GeneratedValue
     private int userId;
     private String username;
-    private String password;
     private String email;
 
     @JsonIgnore

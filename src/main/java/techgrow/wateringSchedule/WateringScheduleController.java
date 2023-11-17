@@ -42,11 +42,12 @@ public class WateringScheduleController {
     ){
         return wateringScheduleSevice.linkPlantSchedule(scheduleId, plantId);
     }
-    @PutMapping("/{scheduleId}/User/{userId}")
+    @PutMapping("/{scheduleId}/User/{userId}/Plant/{plantId}")
     WateringSchedule userScheduler(
             @PathVariable int scheduleId,
-            @PathVariable int userId
+            @PathVariable int userId,
+            @PathVariable int plantId
     ){
-        return wateringScheduleSevice.linkUserSchedule(scheduleId, userId);
+        return wateringScheduleSevice.linkUserSchedule(scheduleId, userId, plantId);
     }
 }

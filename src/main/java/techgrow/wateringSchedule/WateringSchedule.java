@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import techgrow.plants.Plant;
 import techgrow.user.User;
-
 @Entity
 @Setter
 @Getter

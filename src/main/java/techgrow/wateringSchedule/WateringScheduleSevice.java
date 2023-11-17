@@ -57,11 +57,13 @@ public class WateringScheduleSevice {
         }
         else return null;
     }
-    public WateringSchedule linkUserSchedule(int scheduleId, int userId) {
+    public WateringSchedule linkUserSchedule(int scheduleId, int userId, int plantId) {
         WateringSchedule wateringScheduleEdit = wateringScheduleRepository.findById(scheduleId).orElse(null);
         User userLink = userRepository.findById(userId).orElse(null);
+        Plant plantEdit = plantRepository.findById(plantId).orElse(null);
         if(wateringScheduleEdit != null && userLink != null){
             wateringScheduleEdit.addUser(userLink);
+            wateringScheduleEdit.addPlant(plantEdit);
             return wateringScheduleRepository.save(wateringScheduleEdit);
         }
         else return null;

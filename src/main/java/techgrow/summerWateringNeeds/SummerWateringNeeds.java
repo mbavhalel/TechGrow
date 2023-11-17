@@ -15,8 +15,8 @@ import techgrow.plants.Plant;
     @Id
     @GeneratedValue
     private int weteringId;
-    private int howOften;
-    private int howDeep;
+    private String howOften;
+    private String howDeep;
 
     @OneToOne
     @JoinColumn(name = "fk_plant_id")

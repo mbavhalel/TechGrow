@@ -17,7 +17,6 @@ public class UserSevice {
         User updatedUser = userRepository.findById(user.getUserId()).orElse(null);
         if(updatedUser != null){
             updatedUser.setEmail(user.getEmail());
-            updatedUser.setPassword(user.getPassword());
             updatedUser.setUsername(user.getUsername());
             userRepository.save(updatedUser);
             return updatedUser;
